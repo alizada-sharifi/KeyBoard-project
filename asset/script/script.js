@@ -10,6 +10,7 @@ document.addEventListener("keydown", function (event) {
     keyElement.classList.add("active");
   }
 });
+
 // Listen for keyup event to remove the active class when the key is released
 document.addEventListener("keyup", function (event) {
   const keyPressed = event.key.toLowerCase();
@@ -20,6 +21,18 @@ document.addEventListener("keyup", function (event) {
     keyElement.classList.remove("active");
   }
 });
+
+// Listen for touch events to handle mobile interactions
+btn.forEach((button) => {
+  button.addEventListener("touchstart", function () {
+    button.classList.add("active");
+  });
+
+  button.addEventListener("touchend", function () {
+    button.classList.remove("active");
+  });
+});
+
 // =============== theme section =======================
 const toggleBtn = document.getElementById("btn");
 const lightBtn = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -35,7 +48,7 @@ toggleBtn.addEventListener("click", function () {
   if (isDarkModeEnable()) {
     toggleBtn.innerHTML = darkBtn;
   } else {
-    toggleBtn.innerHTML = lightBtn;  
+    toggleBtn.innerHTML = lightBtn;
   }
 });
 function isDarkModeEnable() {
